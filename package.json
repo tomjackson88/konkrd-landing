@@ -1,0 +1,12 @@
+{
+  "name": "konkrd-hero",
+  "version": "1.0.0",
+  "description": "Konkrd landing page hero section",
+  "scripts": {
+    "start": "npx serve public",
+    "dev": "npx serve public"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
