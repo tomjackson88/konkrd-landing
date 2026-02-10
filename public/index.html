@@ -34,11 +34,11 @@
       width: 100%;
       display: flex;
       justify-content: center;
-      padding: 24px 0 25px;
-      border-bottom: 1px solid #E8E8EA;
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
+      padding: 18px 0 19px;
+      border-bottom: 1px solid rgba(232, 232, 234, 0.5);
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
     }
     
     .header-content {
@@ -48,15 +48,16 @@
     }
     
     .logo {
-      height: 65px;
+      height: 54px;
       width: auto;
     }
     
     /* Hero Section */
     .hero {
       position: relative;
-      background: linear-gradient(90deg, #FAFAFB 20.711%, #FFFFFF 64.142%);
-      min-height: calc(100vh - 121px);
+      background: linear-gradient(180deg, #FAFAFB 0%, #FFFFFF 100%);
+      min-height: calc(100vh - 90px);
+      padding-bottom: 0;
     }
     
     .hero-container {
@@ -64,7 +65,7 @@
       z-index: 10;
       max-width: 1136px;
       margin: 0 auto;
-      padding: 40px 24px 80px;
+      padding: 40px 24px 56px;
     }
     
     /* AI-Powered Badge with animated gradient border */
@@ -167,11 +168,11 @@
     }
     
     .heading h1 {
-      font-size: 66px;
+      font-size: 58px;
       font-weight: 700;
       color: #0A0A0A;
       letter-spacing: -2px;
-      line-height: 70px;
+      line-height: 64px;
     }
     
     .gradient-text {
@@ -197,6 +198,8 @@
       width: 100%;
       max-width: 720px;
       margin: 44px auto 0;
+      transform-origin: center top;
+      will-change: transform, opacity;
     }
     
     /* 3D Icons - Positioned relative to chat wrapper */
@@ -239,8 +242,8 @@
     .chat-header {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 16px 24px 17px;
+      gap: 10px;
+      padding: 12px 20px;
       background: #000000;
       border-bottom: 1px solid #E8E8EA;
     }
@@ -254,26 +257,26 @@
     }
     
     .gradient-icon.large {
-      width: 40px;
-      height: 40px;
+      width: 34px;
+      height: 34px;
       box-shadow: 0px 2px 8px rgba(84, 152, 249, 0.2);
     }
     
     .gradient-icon.small {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       box-shadow: 0px 2px 6px rgba(84, 152, 249, 0.15);
       flex-shrink: 0;
     }
     
     .gradient-icon img {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
     }
     
     .gradient-icon.small img {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
     }
     
     .chat-header-info {
@@ -328,9 +331,10 @@
     
     /* Chat Body */
     .chat-body {
-      padding: 32px 24px;
+      padding: 20px 24px;
       background: #FFFFFF;
-      min-height: 180px;
+      min-height: 120px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
     
     .message-row {
@@ -340,19 +344,16 @@
     }
     
     .message-bubble {
-      padding: 17px 26px;
-      background: #FFFFFF;
-      border: 1px solid #E8E8EA;
-      border-radius: 14px;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04), 0px 1px 2px rgba(0, 0, 0, 0.02);
+      padding: 4px 0;
       max-width: 570px;
+      margin-top: -2px;
     }
     
     .message-text {
       font-size: 15px;
       font-weight: 400;
       color: #0A0A0A;
-      line-height: 22.5px;
+      line-height: 28px;
       text-align: left;
     }
     
@@ -429,6 +430,86 @@
       border-color: #1992F6;
     }
     
+    /* Large input wrapper - Claude-style */
+    .input-wrapper-large {
+      display: flex;
+      flex-direction: column;
+      background: #FAFAFB;
+      border: 1px solid #E8E8EA;
+      border-radius: 16px;
+      padding: 16px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    
+    .input-wrapper-large:focus-within {
+      border-color: #5498F9;
+      box-shadow: 0 0 0 3px rgba(84, 152, 249, 0.1);
+    }
+    
+    .text-input-large {
+      width: 100%;
+      min-height: 60px;
+      padding: 0;
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 400;
+      color: #0A0A0A;
+      outline: none;
+      resize: none;
+      line-height: 1.5;
+    }
+    
+    .text-input-large::placeholder {
+      color: #999999;
+    }
+    
+    .input-bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #E8E8EA;
+    }
+    
+    .input-action-buttons {
+      display: flex;
+      gap: 8px;
+    }
+    
+    .action-btn-small {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      height: 36px;
+      background: #FFFFFF;
+      border: 1px solid #E8E8EA;
+      border-radius: 20px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    
+    .action-btn-small:hover {
+      border-color: #5498F9;
+      background: rgba(84, 152, 249, 0.05);
+    }
+    
+    .action-btn-small span {
+      font-size: 13px;
+      font-weight: 500;
+      color: #6E6E73;
+      line-height: 17px;
+      white-space: nowrap;
+    }
+    
+    .action-btn-small svg {
+      flex-shrink: 0;
+    }
+    
     .text-input {
       flex: 1;
       height: 36px;
@@ -452,10 +533,10 @@
       gap: 8px;
     }
     
-    .dropdown-btn {
+    .action-btn {
       display: flex;
       align-items: center;
-      gap: 3px;
+      gap: 6px;
       padding: 8px 12px;
       height: 36px;
       background: #FFFFFF;
@@ -463,25 +544,25 @@
       border-radius: 8px;
       cursor: pointer;
       font-family: inherit;
-      transition: border-color 0.2s, background 0.2s;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
     }
     
-    .dropdown-btn:hover {
-      border-color: #c0c0c0;
-      background: #F5F5F5;
+    .action-btn:hover {
+      border-color: #5498F9;
+      background: rgba(84, 152, 249, 0.05);
+      transform: translateY(-1px);
     }
     
-    .dropdown-btn span {
+    .action-btn span {
       font-size: 13px;
       font-weight: 500;
-      color: #000000;
+      color: #0A0A0A;
       line-height: 17px;
       white-space: nowrap;
     }
     
-    .dropdown-btn img {
-      width: 16px;
-      height: 16px;
+    .action-btn svg {
+      flex-shrink: 0;
     }
     
     .submit-btn {
@@ -511,6 +592,19 @@
       margin-top: 16px;
       margin-left: 44px;
       flex-wrap: wrap;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                  opacity 0.4s ease,
+                  margin-top 0.4s ease;
+      margin-top: 0;
+    }
+    
+    .quick-replies.expanded {
+      max-height: 200px;
+      opacity: 1;
+      margin-top: 16px;
     }
     
     .quick-reply-chip {
@@ -567,61 +661,58 @@
     
     /* Background Decoration - Single evolving gradient behind chatbox */
     
-    /* Main evolving gradient behind chatbox - centered */
+    /* Main evolving gradient behind chatbox - lowered, side-to-side movement */
     .bg-gradient-center {
       position: absolute;
       left: 50%;
-      top: 58%;
+      top: 68%;
       transform: translate(-50%, -50%);
-      width: 700px;
-      height: 400px;
+      width: 750px;
+      height: 450px;
       background: linear-gradient(
         135deg,
         rgba(84, 152, 249, 0.5) 0%,
         rgba(155, 123, 246, 0.4) 30%,
-        rgba(237, 46, 242, 0.5) 60%,
-        rgba(240, 65, 216, 0.4) 100%
+        rgba(237, 46, 242, 0.45) 60%,
+        rgba(240, 65, 216, 0.35) 100%
       );
-      filter: blur(60px);
+      filter: blur(65px);
       pointer-events: none;
       z-index: 1;
       border-radius: 50%;
       animation: morph-shape 10s ease-in-out infinite;
+      transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
     
-    /* Main shapeshifting animation for center gradient */
+    /* Side-to-side morphing animation for center gradient */
     @keyframes morph-shape {
       0% {
-        border-radius: 60% 40% 50% 50% / 50% 50% 50% 50%;
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        border-radius: 60% 40% 55% 45% / 55% 45% 50% 50%;
+        transform: translate(-35%, -50%) scale(1) rotate(0deg);
       }
       15% {
-        border-radius: 50% 60% 40% 50% / 60% 40% 60% 40%;
-        transform: translate(-48%, -52%) scale(1.08, 0.95) rotate(2deg);
+        border-radius: 45% 55% 40% 60% / 60% 40% 55% 45%;
+        transform: translate(-55%, -52%) scale(1.08, 0.94) rotate(3deg);
       }
       30% {
-        border-radius: 40% 50% 60% 50% / 50% 60% 40% 60%;
-        transform: translate(-52%, -48%) scale(0.95, 1.1) rotate(-2deg);
+        border-radius: 55% 45% 60% 40% / 45% 55% 45% 55%;
+        transform: translate(-65%, -48%) scale(0.95, 1.08) rotate(-2deg);
       }
-      45% {
-        border-radius: 50% 40% 50% 60% / 40% 50% 60% 50%;
-        transform: translate(-50%, -53%) scale(1.1, 0.92) rotate(3deg);
+      50% {
+        border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%;
+        transform: translate(-50%, -50%) scale(1.05, 0.96) rotate(2deg);
       }
-      60% {
-        border-radius: 60% 50% 40% 50% / 50% 40% 50% 60%;
-        transform: translate(-47%, -50%) scale(0.93, 1.08) rotate(-1deg);
+      70% {
+        border-radius: 55% 45% 50% 50% / 50% 50% 55% 45%;
+        transform: translate(-35%, -52%) scale(0.96, 1.06) rotate(-3deg);
       }
-      75% {
-        border-radius: 50% 60% 50% 40% / 60% 50% 40% 50%;
-        transform: translate(-53%, -47%) scale(1.06, 0.97) rotate(2deg);
-      }
-      90% {
-        border-radius: 40% 50% 60% 50% / 50% 60% 50% 40%;
-        transform: translate(-50%, -52%) scale(0.97, 1.05) rotate(-2deg);
+      85% {
+        border-radius: 50% 50% 45% 55% / 55% 45% 50% 50%;
+        transform: translate(-45%, -48%) scale(1.04, 0.98) rotate(2deg);
       }
       100% {
-        border-radius: 60% 40% 50% 50% / 50% 50% 50% 50%;
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+        border-radius: 60% 40% 55% 45% / 55% 45% 50% 50%;
+        transform: translate(-35%, -50%) scale(1) rotate(0deg);
       }
     }
     
@@ -663,6 +754,50 @@
     /* 3D icon parallax transition */
     .icon-3d {
       transition: transform 0.3s ease-out;
+    }
+    
+    /* Trustpilot Rating */
+    .trustpilot-rating {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 11px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+    
+    .trustpilot-stars {
+      display: flex;
+      gap: 3px;
+    }
+    
+    .trustpilot-stars svg {
+      width: 22px;
+      height: 22px;
+    }
+    
+    .trustpilot-score {
+      font-size: 17px;
+      font-weight: 700;
+      color: #0A0A0A;
+    }
+    
+    .trustpilot-text {
+      font-size: 15px;
+      font-weight: 400;
+      color: #6E6E73;
+    }
+    
+    .trustpilot-reviews {
+      font-size: 15px;
+      font-weight: 600;
+      color: #0A0A0A;
+    }
+    
+    .trustpilot-logo {
+      margin-left: 4px;
+      width: 88px;
+      height: 22px;
     }
     
     /* Decorative squiggles at bottom */
@@ -771,23 +906,79 @@
     }
     
     /* ==================== */
-    /* Logo Section Styles  */
-    /* ==================== */
+    /* Logo Grid Section Styles  */
+    /* ========================= */
     
-    .logo-section {
-      background: #FAFAFB;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.9);
-      padding: 80px 24px 100px;
+    .logo-grid-section {
+      position: relative;
+      background: #FFFFFF;
+      padding: 16px 40px 100px;
       overflow: hidden;
     }
     
-    .logo-section-container {
-      max-width: 1200px;
+    /* Gradient blob behind logos bleeding into testimonials */
+    .logos-gradient-blob {
+      position: absolute;
+      left: 50%;
+      bottom: -200px;
+      transform: translateX(-50%);
+      width: 1000px;
+      height: 600px;
+      background: linear-gradient(
+        135deg,
+        rgba(84, 152, 249, 0.35) 0%,
+        rgba(155, 123, 246, 0.3) 30%,
+        rgba(237, 46, 242, 0.35) 60%,
+        rgba(240, 65, 216, 0.25) 100%
+      );
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+      animation: morph-shape-logos 9s ease-in-out infinite;
+    }
+    
+    @keyframes morph-shape-logos {
+      0% {
+        border-radius: 60% 40% 55% 45% / 55% 45% 50% 50%;
+        transform: translateX(-50%) scale(1) rotate(0deg);
+      }
+      33% {
+        border-radius: 45% 55% 40% 60% / 60% 40% 55% 45%;
+        transform: translateX(-45%) scale(1.08, 0.94) rotate(3deg);
+      }
+      66% {
+        border-radius: 55% 45% 60% 40% / 45% 55% 45% 55%;
+        transform: translateX(-55%) scale(0.94, 1.06) rotate(-2deg);
+      }
+      100% {
+        border-radius: 60% 40% 55% 45% / 55% 45% 50% 50%;
+        transform: translateX(-50%) scale(1) rotate(0deg);
+      }
+    }
+    
+    .logo-grid-container {
+      position: relative;
+      z-index: 1;
+      max-width: 1000px;
       margin: 0 auto;
       text-align: center;
     }
     
-    .logo-section-title {
+    .logo-grid-card {
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 50px 60px;
+      box-shadow: 0px 2px 4px rgba(0,0,0,0.04), 0px 1px 2px rgba(0,0,0,0.02);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .logo-grid-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0px 12px 24px rgba(84, 152, 249, 0.1), 0px 4px 8px rgba(0,0,0,0.06);
+    }
+    
+    .logo-grid-title {
       font-family: 'Inter', sans-serif;
       font-size: 28px;
       font-weight: 700;
@@ -796,85 +987,62 @@
       margin-bottom: 40px;
     }
     
-    .logo-carousel-wrapper {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    }
-    
-    .logo-carousel {
-      display: flex;
+    .logo-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 40px 30px;
       align-items: center;
-      gap: 46px;
-      animation: scroll-logos 25s linear infinite;
-      width: max-content;
+      justify-items: center;
     }
     
-    .logo-carousel:hover {
-      animation-play-state: paused;
-    }
-    
-    .logo-item {
-      flex-shrink: 0;
+    .logo-grid-item {
       display: flex;
       align-items: center;
       justify-content: center;
-      opacity: 0.7;
+      opacity: 0.6;
       transition: opacity 0.3s ease;
     }
     
-    .logo-item:hover {
+    .logo-grid-item:hover {
       opacity: 1;
     }
     
-    .logo-item img {
-      display: block;
+    .logo-grid-item img {
+      max-width: 100px;
+      max-height: 40px;
       object-fit: contain;
     }
     
-    /* Individual logo sizes matching Figma */
-    .logo-aami img { width: 82px; height: 29px; }
-    .logo-bupa img { width: 34px; height: 34px; }
-    .logo-nib img { width: 81px; height: 27px; }
-    .logo-frank img { width: 77px; height: 33px; }
-    .logo-peoplecare img { width: 129px; height: 31px; }
-    .logo-aia img { width: 36px; height: 38px; }
-    .logo-ing img { width: 117px; height: 30px; }
-    
-    @keyframes scroll-logos {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
+    @media (max-width: 900px) {
+      .logo-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px 20px;
       }
     }
     
-    @media (max-width: 768px) {
-      .logo-section {
+    @media (max-width: 600px) {
+      .logo-grid-section {
         padding: 60px 16px 80px;
       }
       
-      .logo-section-title {
+      .logo-grid-card {
+        padding: 32px 24px;
+      }
+      
+      .logo-grid-title {
         font-size: 22px;
         line-height: 32px;
-        padding: 0 20px;
       }
       
-      .logo-carousel {
-        gap: 32px;
+      .logo-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px 16px;
       }
       
-      /* Scale down logos on mobile */
-      .logo-aami img { width: 65px; height: 23px; }
-      .logo-bupa img { width: 27px; height: 27px; }
-      .logo-nib img { width: 65px; height: 22px; }
-      .logo-frank img { width: 62px; height: 26px; }
-      .logo-peoplecare img { width: 103px; height: 25px; }
-      .logo-aia img { width: 29px; height: 30px; }
-      .logo-ing img { width: 94px; height: 24px; }
+      .logo-grid-item img {
+        max-width: 70px;
+        max-height: 30px;
+      }
     }
     
     /* ==================== */
@@ -882,16 +1050,38 @@
     /* ==================== */
     
     .demo-section {
-      background: #FFFFFF;
-      padding: 70px 24px 120px;
+      background: transparent;
+      padding: 56px 24px 120px;
       position: relative;
-      overflow: hidden;
+      overflow: visible;
+    }
+    
+    /* Extended gradient that flows from hero into demo */
+    .demo-section::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 700px;
+      background: radial-gradient(
+        ellipse at center,
+        rgba(155, 123, 246, 0.25) 0%,
+        rgba(84, 152, 249, 0.15) 30%,
+        rgba(237, 46, 242, 0.1) 50%,
+        transparent 70%
+      );
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
     }
     
     .demo-container {
       max-width: 1200px;
       margin: 0 auto;
       position: relative;
+      z-index: 1;
     }
     
     .demo-header {
@@ -907,6 +1097,15 @@
       line-height: 89.6px;
       letter-spacing: -1.5px;
       margin: 0 0 4px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .demo-title.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .demo-subtitle {
@@ -915,6 +1114,16 @@
       font-weight: 400;
       color: #6E6E73;
       line-height: 32px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: 0.1s;
+    }
+    
+    .demo-subtitle.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     
     .cards-container {
@@ -925,27 +1134,66 @@
       margin-bottom: 8px;
     }
     
-    /* Gradient blob behind cards */
-    .cards-container::before {
-      content: '';
+    /* Gradient blob behind cards with magnetic effect */
+    .cards-gradient-blob {
       position: absolute;
-      width: 800px;
-      height: 600px;
-      top: 50%;
-      left: 55%;
+      left: 50%;
+      top: 40%;
       transform: translate(-50%, -50%);
-      background: radial-gradient(
-        ellipse at center,
-        rgba(183, 100, 255, 0.6) 0%,
-        rgba(213, 63, 242, 0.45) 25%,
-        rgba(155, 123, 246, 0.28) 45%,
-        rgba(84, 152, 249, 0.12) 65%,
-        rgba(255, 255, 255, 0) 85%
+      width: 750px;
+      height: 450px;
+      background: linear-gradient(
+        135deg,
+        rgba(84, 152, 249, 0.45) 0%,
+        rgba(155, 123, 246, 0.4) 30%,
+        rgba(237, 46, 242, 0.45) 60%,
+        rgba(240, 65, 216, 0.35) 100%
       );
-      border-radius: 50%;
+      filter: blur(70px);
       pointer-events: none;
       z-index: 0;
-      filter: blur(40px);
+      border-radius: 50%;
+      animation: morph-shape-cards 7s ease-in-out infinite;
+      transition: transform 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    @keyframes morph-shape-cards {
+      0% {
+        border-radius: 60% 40% 55% 45% / 55% 45% 50% 50%;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+      }
+      12.5% {
+        border-radius: 45% 55% 40% 60% / 60% 40% 55% 45%;
+        transform: translate(-45%, -55%) scale(1.1, 0.9) rotate(5deg);
+      }
+      25% {
+        border-radius: 55% 45% 60% 40% / 45% 55% 45% 55%;
+        transform: translate(-55%, -45%) scale(0.88, 1.12) rotate(-4deg);
+      }
+      37.5% {
+        border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%;
+        transform: translate(-48%, -56%) scale(1.08, 0.92) rotate(6deg);
+      }
+      50% {
+        border-radius: 60% 40% 55% 45% / 40% 60% 45% 55%;
+        transform: translate(-56%, -48%) scale(0.9, 1.1) rotate(-5deg);
+      }
+      62.5% {
+        border-radius: 45% 55% 40% 60% / 60% 40% 55% 45%;
+        transform: translate(-44%, -52%) scale(1.12, 0.88) rotate(4deg);
+      }
+      75% {
+        border-radius: 55% 45% 60% 40% / 45% 55% 40% 60%;
+        transform: translate(-52%, -44%) scale(0.92, 1.08) rotate(-6deg);
+      }
+      87.5% {
+        border-radius: 50% 50% 45% 55% / 55% 45% 55% 45%;
+        transform: translate(-50%, -54%) scale(1.05, 0.95) rotate(3deg);
+      }
+      100% {
+        border-radius: 60% 40% 55% 45% / 55% 45% 50% 50%;
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+      }
     }
     
     /* Gradient fade overlay at bottom of cards */
@@ -991,17 +1239,14 @@
     /* Plan card scroll reveal */
     .plan-card {
       opacity: 0;
-      transform: translateY(40px);
+      transform: translateY(150px) scale(0.7);
+      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+      will-change: transform, opacity;
     }
     
-    .plan-card.revealed {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    
-    .plan-card.revealed:hover {
-      transform: translateY(-6px);
+    .plan-card:hover {
+      box-shadow: 0px 20px 40px rgba(84, 152, 249, 0.15), 0px 8px 16px rgba(0,0,0,0.08);
+      border-color: #D1D1D6;
     }
     
     /* Card Header */
@@ -1416,12 +1661,41 @@
       background: #FFFFFF;
       border-radius: 60px;
       border-bottom: 1px solid #FDE7FA;
+      opacity: 0;
+      transform: translateY(30px) scale(0.85);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.3s ease;
     }
+    
+    .feature-pill.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    
+    .feature-pill:hover {
+      box-shadow: 0 4px 16px rgba(84, 152, 249, 0.15);
+    }
+    
+    /* Staggered delays for pills */
+    .feature-pill:nth-child(1) { transition-delay: 0s; }
+    .feature-pill:nth-child(2) { transition-delay: 0.1s; }
+    .feature-pill:nth-child(3) { transition-delay: 0.2s; }
+    .feature-pill:nth-child(4) { transition-delay: 0.3s; }
     
     .feature-pill-check {
       font-size: 18px;
       font-weight: 700;
-      color: #0A0A0A;
+      color: #10B981;
+      opacity: 0;
+      transform: scale(0) rotate(-180deg);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .feature-pill.visible .feature-pill-check {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+      transition-delay: 0.3s;
     }
     
     .feature-pill-text {
@@ -1536,11 +1810,13 @@
     
     .testimonials-photo img {
       width: 100%;
-      height: 100%;
+      height: 110%;
       object-fit: cover;
       object-position: top center;
       filter: drop-shadow(30px 44px 74px rgba(84, 152, 249, 0.1));
-      transform: scaleX(-1);
+      transform: scaleX(-1) translateY(0);
+      transition: transform 0.1s ease-out;
+      will-change: transform;
     }
     
     /* Content container */
@@ -1563,10 +1839,10 @@
     }
     
     .testimonials-subtitle {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 400;
       color: #6E6E73;
-      line-height: 28.8px;
+      line-height: 32px;
       text-align: left;
       padding-left: 440px;
       margin-bottom: 40px;
@@ -1588,14 +1864,22 @@
     .testimonial-card {
       flex-shrink: 0;
       width: 496px;
-      background: #FFFFFF;
-      border: 1px solid #E8E8EA;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(84, 152, 249, 0.15);
       border-radius: 16px;
       box-shadow: 0px 2px 4px rgba(0,0,0,0.04), 0px 1px 2px rgba(0,0,0,0.02);
       padding: 48px 49px 49px;
       display: flex;
       flex-direction: column;
       gap: 23px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    }
+    
+    .testimonial-card:hover {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0px 8px 20px rgba(84, 152, 249, 0.12), 0px 4px 8px rgba(0,0,0,0.04);
     }
     
     .testimonial-stars {
@@ -1744,11 +2028,52 @@
     
     /* ===== TRUST BAR SECTION ===== */
     .trust-bar-section {
-      background: linear-gradient(to bottom, rgba(84, 152, 249, 0.03) 0%, rgba(237, 46, 242, 0.03) 100%);
-      padding: 99px 360px 100px;
+      position: relative;
+      background: transparent;
+      padding: 120px 360px;
+      overflow: visible;
+    }
+    
+    /* Gradient blob at top, mostly under testimonials */
+    .trust-bar-blob {
+      position: absolute;
+      left: 50%;
+      top: -350px;
+      transform: translateX(-50%);
+      width: 1200px;
+      height: 600px;
+      background: linear-gradient(
+        135deg,
+        rgba(84, 152, 249, 0.18) 0%,
+        rgba(155, 123, 246, 0.15) 30%,
+        rgba(237, 46, 242, 0.18) 60%,
+        rgba(240, 65, 216, 0.12) 100%
+      );
+      filter: blur(100px);
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+      animation: morph-shape-trust 10s ease-in-out infinite;
+    }
+    
+    @keyframes morph-shape-trust {
+      0% {
+        border-radius: 60% 40% 55% 45% / 55% 45% 50% 50%;
+        transform: translateX(-50%) scale(1);
+      }
+      50% {
+        border-radius: 45% 55% 40% 60% / 60% 40% 55% 45%;
+        transform: translateX(-48%) scale(1.05, 0.95);
+      }
+      100% {
+        border-radius: 60% 40% 55% 45% / 55% 45% 50% 50%;
+        transform: translateX(-50%) scale(1);
+      }
     }
     
     .trust-bar-container {
+      position: relative;
+      z-index: 1;
       max-width: 1200px;
       margin: 0 auto;
       display: flex;
@@ -1764,14 +2089,22 @@
       flex-direction: column;
       align-items: center;
       gap: 11px;
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    
-    .trust-bar-stat.visible {
       opacity: 1;
       transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      position: relative;
+    }
+    
+    /* Divider lines between stats */
+    .trust-bar-stat:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: -24px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 70%;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.1) 50%, transparent 100%);
     }
     
     .trust-bar-number {
@@ -1836,11 +2169,15 @@
     
     /* ===== HOW IT WORKS SECTION ===== */
     .how-it-works-section {
+      position: relative;
       background: #FFFFFF;
       padding: 119px 40px 160px;
+      overflow: hidden;
     }
     
     .how-it-works-container {
+      position: relative;
+      z-index: 1;
       max-width: 1200px;
       margin: 0 auto;
       display: flex;
@@ -1853,19 +2190,9 @@
       font-weight: 700;
       color: #0A0A0A;
       letter-spacing: -1.5px;
-      line-height: 67.2px;
+      line-height: 89.6px;
       text-align: center;
-      margin-bottom: 4px;
-    }
-    
-    .how-it-works-subtitle {
-      font-size: 18px;
-      font-weight: 400;
-      color: #6E6E73;
-      line-height: 28.8px;
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 50px;
+      margin-bottom: 50px;
     }
     
     .how-it-works-cards {
@@ -1960,11 +2287,6 @@
         letter-spacing: -1px;
       }
       
-      .how-it-works-subtitle {
-        font-size: 16px;
-        line-height: 25.6px;
-      }
-      
       .how-it-works-container {
         gap: 40px;
       }
@@ -1984,12 +2306,190 @@
       }
     }
     
+    /* ===== WHY/HOW/WHAT PANEL ===== */
+    .philosophy-panel-wrapper {
+      width: 100%;
+      max-width: 1320px;
+      margin: 30px auto 0;
+    }
+    
+    .philosophy-panel {
+      position: relative;
+      width: 100%;
+      padding: 45px 60px;
+      border-radius: 20px;
+      background: #FFFFFF;
+      box-shadow: 0px 2px 4px rgba(0,0,0,0.04), 0px 1px 2px rgba(0,0,0,0.02);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .philosophy-panel:hover {
+      transform: translateY(-6px);
+      box-shadow: 0px 12px 24px rgba(84, 152, 249, 0.1), 0px 4px 8px rgba(0,0,0,0.06);
+    }
+    
+    .philosophy-panel.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.3s ease;
+    }
+    
+    .philosophy-panel.visible:hover {
+      transform: translateY(-6px);
+    }
+    
+    /* Gradient blob behind philosophy panel */
+    .hiw-gradient-blob {
+      position: absolute;
+      left: 50%;
+      bottom: -100px;
+      transform: translateX(-50%);
+      width: 900px;
+      height: 500px;
+      background: linear-gradient(
+        135deg,
+        rgba(84, 152, 249, 0.45) 0%,
+        rgba(155, 123, 246, 0.4) 30%,
+        rgba(237, 46, 242, 0.45) 60%,
+        rgba(240, 65, 216, 0.35) 100%
+      );
+      filter: blur(70px);
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+      animation: morph-shape-hiw 8s ease-in-out infinite;
+    }
+    
+    @keyframes morph-shape-hiw {
+      0% {
+        border-radius: 60% 40% 55% 45% / 55% 45% 50% 50%;
+        transform: translateX(-50%) scale(1) rotate(0deg);
+      }
+      25% {
+        border-radius: 45% 55% 40% 60% / 60% 40% 55% 45%;
+        transform: translateX(-48%) scale(1.1, 0.9) rotate(4deg);
+      }
+      50% {
+        border-radius: 55% 45% 60% 40% / 45% 55% 45% 55%;
+        transform: translateX(-52%) scale(0.9, 1.1) rotate(-3deg);
+      }
+      75% {
+        border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%;
+        transform: translateX(-50%) scale(1.05, 0.95) rotate(2deg);
+      }
+      100% {
+        border-radius: 60% 40% 55% 45% / 55% 45% 50% 50%;
+        transform: translateX(-50%) scale(1) rotate(0deg);
+      }
+    }
+    
+    .philosophy-panel-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    
+    .philosophy-item {
+      flex: 1;
+      text-align: center;
+      padding: 0 40px;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+    
+    /* Subtle divider lines between items */
+    .philosophy-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1px;
+      height: 60%;
+      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.08) 50%, transparent 100%);
+    }
+    
+    .philosophy-panel.visible .philosophy-item {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .philosophy-panel.visible .philosophy-item[data-index="0"] { transition-delay: 0.15s; }
+    .philosophy-panel.visible .philosophy-item[data-index="1"] { transition-delay: 0.25s; }
+    .philosophy-panel.visible .philosophy-item[data-index="2"] { transition-delay: 0.35s; }
+    
+    .philosophy-label {
+      display: block;
+      font-size: 28px;
+      font-weight: 600;
+      color: #0A0A0A;
+      line-height: 33px;
+      margin-bottom: 12px;
+    }
+    
+    .philosophy-text {
+      font-size: 17px;
+      font-weight: 400;
+      color: #6E6E73;
+      line-height: 27.2px;
+    }
+    
+    @media (max-width: 900px) {
+      .philosophy-panel-wrapper {
+        margin-top: 24px;
+        padding: 0 20px;
+      }
+      
+      .philosophy-panel {
+        padding: 32px 24px;
+      }
+      
+      .philosophy-panel-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 32px;
+      }
+      
+      .philosophy-item {
+        max-width: 100%;
+        padding: 0;
+      }
+      
+      .philosophy-item:not(:last-child)::after {
+        display: none;
+      }
+      
+      .philosophy-label {
+        font-size: 22px;
+        line-height: 28px;
+      }
+      
+      .philosophy-text {
+        font-size: 15px;
+        line-height: 24px;
+      }
+    }
+    
     /* ===== FINAL CTA SECTION ===== */
     .final-cta-section {
       position: relative;
       background: #0A0A0A;
-      padding: 159px 40px 160px;
+      padding: 160px 40px;
       overflow: hidden;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     
     /* Purple blob bottom-left */
@@ -2021,7 +2521,7 @@
     .final-cta-container {
       position: relative;
       max-width: 1200px;
-      margin: 0 auto;
+      width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -2111,7 +2611,8 @@
     
     @media (max-width: 768px) {
       .final-cta-section {
-        padding: 80px 16px 100px;
+        padding: 100px 16px;
+        min-height: 400px;
       }
       
       .final-cta-title {
@@ -2148,8 +2649,18 @@
     /* ===== FOOTER ===== */
     .site-footer {
       background: #0A0A0A;
-      border-top: 1px solid #E8E8EA;
       padding: 80px 40px;
+      position: relative;
+    }
+    
+    .site-footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #5498F9 0%, #9B7BF6 50%, #ED2EF2 100%);
     }
     
     .footer-container {
@@ -2213,7 +2724,7 @@
     <div class="header-content">
       <img 
         class="logo" 
-        src="/images/logo-konkrd.svg" 
+        src="images/logo-konkrd.svg" 
         alt="Konkrd - Life Admin Conquered."
       >
     </div>
@@ -2230,13 +2741,8 @@
     <div class="hero-container">
       <!-- AI-Powered Badge -->
       <div class="badge-wrapper">
-        <img 
-          class="sparkle" 
-          src="/images/logo-konkrd.svg" 
-          alt=""
-        >
         <div class="ai-badge">
-          <span>AI-Powered</span>
+          <span>AI-Powered Chat</span>
         </div>
       </div>
       
@@ -2258,12 +2764,12 @@
         <!-- 3D Icons positioned around the chat box -->
         <img 
           class="icon-3d icon-3d-left" 
-          src="/images/icon-shield-3d.png" 
+          src="images/chat-icon.png" 
           alt=""
         >
         <img 
           class="icon-3d icon-3d-right" 
-          src="/images/icon-heart-3d.png" 
+          src="images/compare-icon.png" 
           alt=""
         >
         
@@ -2273,7 +2779,7 @@
           <div class="chat-header">
             <div class="gradient-icon large">
               <img 
-                src="/images/ai-powered-sparkle.png" 
+                src="images/chat-avatar.svg" 
                 alt=""
               >
             </div>
@@ -2291,7 +2797,7 @@
             <div class="message-row" id="botMessageRow" style="opacity: 0; transform: translateY(8px);">
               <div class="gradient-icon small">
                 <img 
-                  src="/images/chat-avatar.svg" 
+                  src="images/chat-avatar.svg" 
                   alt=""
                 >
               </div>
@@ -2315,76 +2821,64 @@
           
           <!-- Chat Input -->
           <div class="chat-input-area">
-            <div class="input-wrapper">
-              <input 
-                type="text" 
-                class="text-input" 
-                placeholder="Type your answer here..."
-              >
-              <div class="input-actions">
-                <button class="dropdown-btn">
-                  <span>Quick Quote</span>
-                  <img 
-                    src="/images/icon-chevron.svg" 
-                    alt=""
-                  >
-                </button>
+            <div class="input-wrapper-large">
+              <textarea 
+                class="text-input-large" 
+                placeholder="Ask anything..."
+                rows="2"
+              ></textarea>
+              <div class="input-bottom-row">
+                <div class="input-action-buttons">
+                  <button class="action-btn-small">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14 10V12.6667C14 13.0203 13.8595 13.3594 13.6095 13.6095C13.3594 13.8595 13.0203 14 12.6667 14H3.33333C2.97971 14 2.64057 13.8595 2.39052 13.6095C2.14048 13.3594 2 13.0203 2 12.6667V10" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M11.3333 5.33333L8 2L4.66667 5.33333" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M8 2V10" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Upload Policy</span>
+                  </button>
+                  <button class="action-btn-small">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path d="M14 14L11.1 11.1" stroke="#6E6E73" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Search Cover</span>
+                  </button>
+                </div>
                 <button class="submit-btn">→</button>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Logo Section -->
-  <section class="logo-section">
-    <div class="logo-section-container">
-      <h2 class="logo-section-title">We compare every major Australian health fund</h2>
       
-      <div class="logo-carousel-wrapper">
-        <div class="logo-carousel">
-          <!-- First set of logos -->
-          <div class="logo-item logo-aami">
-            <img src="/images/logo-aami.svg" alt="AAMI">
-          </div>
-          <div class="logo-item logo-bupa">
-            <img src="/images/logo-bupa.svg" alt="Bupa">
-          </div>
-          <div class="logo-item logo-nib">
-            <img src="/images/logo-nib.svg" alt="NIB">
-          </div>
-          <div class="logo-item logo-frank">
-            <img src="/images/logo-frank.svg" alt="Frank">
-          </div>
-          <div class="logo-item logo-aia">
-            <img src="/images/logo-aia.svg" alt="AIA">
-          </div>
-          <div class="logo-item logo-ing">
-            <img src="/images/logo-ing.svg" alt="ING">
-          </div>
-          
-          <!-- Duplicate set for seamless loop -->
-          <div class="logo-item logo-aami">
-            <img src="/images/logo-aami.svg" alt="AAMI">
-          </div>
-          <div class="logo-item logo-bupa">
-            <img src="/images/logo-bupa.svg" alt="Bupa">
-          </div>
-          <div class="logo-item logo-nib">
-            <img src="/images/logo-nib.svg" alt="NIB">
-          </div>
-          <div class="logo-item logo-frank">
-            <img src="/images/logo-frank.svg" alt="Frank">
-          </div>
-          <div class="logo-item logo-aia">
-            <img src="/images/logo-aia.svg" alt="AIA">
-          </div>
-          <div class="logo-item logo-ing">
-            <img src="/images/logo-ing.svg" alt="ING">
-          </div>
+      <!-- Trustpilot Rating -->
+      <div class="trustpilot-rating">
+        <div class="trustpilot-stars">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
+          </svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
+          </svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
+          </svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
+          </svg>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
+          </svg>
         </div>
+        <span class="trustpilot-score">4.9</span>
+        <span class="trustpilot-text">out of 5 based on</span>
+        <span class="trustpilot-reviews">2,847 reviews</span>
+        <svg class="trustpilot-logo" width="80" height="20" viewBox="0 0 80 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.5 8.2H11.2L9.3 2.5L7.4 8.2H1L6.1 11.8L4.2 17.5L9.3 13.8L14.4 17.5L12.5 11.8L17.5 8.2Z" fill="#00B67A"/>
+          <path d="M12.8 13.2L12.5 11.8L9.3 13.8L12.8 13.2Z" fill="#005128"/>
+          <text x="22" y="14" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">Trustpilot</text>
+        </svg>
       </div>
     </div>
   </section>
@@ -2395,16 +2889,19 @@
       <!-- Header -->
       <div class="demo-header">
         <h2 class="demo-title">Thousands of policies. One perfect match.</h2>
-        <p class="demo-subtitle">Our AI compares every major Australian fund against what you actually need. Hospital, extras, or both. Honest prices. Complete coverage.</p>
+        <p class="demo-subtitle">Our AI compares every major Australian fund against what you actually need.<br>Honest prices. Complete coverage.</p>
       </div>
       
       <!-- Cards Container -->
-      <div class="cards-container">
+      <div class="cards-container" id="cardsContainer">
+        <!-- Gradient blob behind cards -->
+        <div class="cards-gradient-blob" id="cardsGradientBlob"></div>
+        
         <!-- Card 1: Recommended (AIA) -->
         <div class="plan-card recommended" data-reveal-delay="0">
           <div class="card-header">
             <div class="card-header-top">
-              <img class="provider-logo" src="/images/logo-aia-colour.svg" alt="AIA" style="width: 58px; height: 36px;">
+              <img class="provider-logo" src="images/logo-aia-colour.svg" alt="AIA" style="width: 58px; height: 36px;">
               <span class="partner-badge">Partner</span>
             </div>
             <span class="best-match-badge">Best Match</span>
@@ -2414,7 +2911,7 @@
           
           <div class="card-pricing">
             <div class="price-row">
-              <span class="price">$249.39</span>
+              <span class="price" data-card-price="1" data-base-price="249.39">$249.39</span>
               <span class="price-period">/month</span>
             </div>
             <p class="price-note">Based on your profile</p>
@@ -2430,7 +2927,7 @@
                 <span class="slider-value highlight" data-slider-value="excess-1">$250</span>
               </div>
               <div class="slider-track-wrapper">
-                <input type="range" class="custom-slider" id="excess-1" min="250" max="750" step="250" value="250" data-highlight="true">
+                <input type="range" class="custom-slider" data-card="1" data-type="excess" id="excess-1" min="250" max="750" step="250" value="250" data-highlight="true">
               </div>
               <div class="slider-labels">
                 <span>$250</span>
@@ -2448,7 +2945,7 @@
                 <span class="slider-value highlight" data-slider-value="extras-1">$250</span>
               </div>
               <div class="slider-track-wrapper">
-                <input type="range" class="custom-slider" id="extras-1" min="100" max="500" step="50" value="250" data-highlight="true">
+                <input type="range" class="custom-slider" data-card="1" data-type="extras" id="extras-1" min="100" max="500" step="50" value="250" data-highlight="true">
               </div>
             </div>
           </div>
@@ -2487,7 +2984,7 @@
         <div class="plan-card" data-reveal-delay="150">
           <div class="card-header">
             <div class="card-header-top">
-              <img class="provider-logo" src="/images/logo-bupa-colour.svg" alt="Bupa" style="height: 36px; width: 36px;">
+              <img class="provider-logo" src="images/logo-bupa-colour.svg" alt="Bupa" style="height: 36px; width: 36px;">
             </div>
             <h3 class="plan-name">BUPA Basic Plus</h3>
             <p class="plan-description">Comprehensive cover with a wider range of treatment options included</p>
@@ -2495,7 +2992,7 @@
           
           <div class="card-pricing">
             <div class="price-row">
-              <span class="price">$312.50</span>
+              <span class="price" data-card-price="2" data-base-price="312.50">$312.50</span>
               <span class="price-period">/month</span>
             </div>
             <p class="price-note">Based on your profile</p>
@@ -2511,7 +3008,7 @@
                 <span class="slider-value" data-slider-value="excess-2">$500</span>
               </div>
               <div class="slider-track-wrapper">
-                <input type="range" class="custom-slider" id="excess-2" min="250" max="750" step="250" value="500">
+                <input type="range" class="custom-slider" data-card="2" data-type="excess" id="excess-2" min="250" max="750" step="250" value="500">
               </div>
               <div class="slider-labels">
                 <span>$250</span>
@@ -2529,7 +3026,7 @@
                 <span class="slider-value" data-slider-value="extras-2">$350</span>
               </div>
               <div class="slider-track-wrapper">
-                <input type="range" class="custom-slider" id="extras-2" min="100" max="500" step="50" value="350">
+                <input type="range" class="custom-slider" data-card="2" data-type="extras" id="extras-2" min="100" max="500" step="50" value="350">
               </div>
             </div>
           </div>
@@ -2563,7 +3060,7 @@
         <div class="plan-card" data-reveal-delay="300">
           <div class="card-header">
             <div class="card-header-top">
-              <img class="provider-logo" src="/images/logo-aami-colour.svg" alt="AAMI" style="width: 67px; height: 36px;">
+              <img class="provider-logo" src="images/logo-aami-colour.svg" alt="AAMI" style="width: 67px; height: 36px;">
             </div>
             <h3 class="plan-name">AAMI Starter Hospital</h3>
             <p class="plan-description">Essential hospital cover at the most affordable price point available</p>
@@ -2571,7 +3068,7 @@
           
           <div class="card-pricing">
             <div class="price-row">
-              <span class="price">$189.20</span>
+              <span class="price" data-card-price="3" data-base-price="189.20">$189.20</span>
               <span class="price-period">/month</span>
             </div>
             <p class="price-note">Based on your profile</p>
@@ -2587,7 +3084,7 @@
                 <span class="slider-value" data-slider-value="excess-3">$750</span>
               </div>
               <div class="slider-track-wrapper">
-                <input type="range" class="custom-slider" id="excess-3" min="250" max="750" step="250" value="750">
+                <input type="range" class="custom-slider" data-card="3" data-type="excess" id="excess-3" min="250" max="750" step="250" value="750">
               </div>
               <div class="slider-labels">
                 <span>$250</span>
@@ -2605,7 +3102,7 @@
                 <span class="slider-value" data-slider-value="extras-3">$150</span>
               </div>
               <div class="slider-track-wrapper">
-                <input type="range" class="custom-slider" id="extras-3" min="100" max="500" step="50" value="150">
+                <input type="range" class="custom-slider" data-card="3" data-type="extras" id="extras-3" min="100" max="500" step="50" value="150">
               </div>
             </div>
           </div>
@@ -2665,16 +3162,51 @@
     </div>
   </section>
 
+  <!-- Logo Grid Section -->
+  <section class="logo-grid-section">
+    <!-- Gradient blob -->
+    <div class="logos-gradient-blob"></div>
+    
+    <div class="logo-grid-container">
+      <div class="logo-grid-card">
+        <h2 class="logo-grid-title">We compare every major Australian health fund</h2>
+        <div class="logo-grid">
+          <!-- Row 1 -->
+          <div class="logo-grid-item"><img src="images/logo-aami.svg" alt="AAMI"></div>
+          <div class="logo-grid-item"><img src="images/logo-bupa.svg" alt="Bupa"></div>
+          <div class="logo-grid-item"><img src="images/logo-nib.svg" alt="NIB"></div>
+          <div class="logo-grid-item"><img src="images/logo-frank.svg" alt="Frank"></div>
+          <div class="logo-grid-item"><img src="images/logo-aia.svg" alt="AIA"></div>
+          <div class="logo-grid-item"><img src="images/logo-ing.svg" alt="ING"></div>
+          <!-- Row 2 (shifted order) -->
+          <div class="logo-grid-item"><img src="images/logo-nib.svg" alt="NIB"></div>
+          <div class="logo-grid-item"><img src="images/logo-ing.svg" alt="ING"></div>
+          <div class="logo-grid-item"><img src="images/logo-aami.svg" alt="AAMI"></div>
+          <div class="logo-grid-item"><img src="images/logo-aia.svg" alt="AIA"></div>
+          <div class="logo-grid-item"><img src="images/logo-bupa.svg" alt="Bupa"></div>
+          <div class="logo-grid-item"><img src="images/logo-frank.svg" alt="Frank"></div>
+          <!-- Row 3 (different shift) -->
+          <div class="logo-grid-item"><img src="images/logo-frank.svg" alt="Frank"></div>
+          <div class="logo-grid-item"><img src="images/logo-aia.svg" alt="AIA"></div>
+          <div class="logo-grid-item"><img src="images/logo-ing.svg" alt="ING"></div>
+          <div class="logo-grid-item"><img src="images/logo-bupa.svg" alt="Bupa"></div>
+          <div class="logo-grid-item"><img src="images/logo-nib.svg" alt="NIB"></div>
+          <div class="logo-grid-item"><img src="images/logo-aami.svg" alt="AAMI"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Testimonials Section -->
   <section class="testimonials-section">
     <!-- Decorative elements -->
     <div class="testimonials-deco-blob"></div>
-    <img class="testimonials-deco-scribble-blue" src="/images/testimonial-shape-blue.png" alt="">
-    <img class="testimonials-deco-scribble-pink" src="/images/testimonial-shape-pink.png" alt="">
+    <img class="testimonials-deco-scribble-blue" src="images/testimonial-shape-blue.png" alt="">
+    <img class="testimonials-deco-scribble-pink" src="images/testimonial-shape-pink.png" alt="">
     
     <!-- Woman photo -->
     <div class="testimonials-photo">
-      <img src="/images/chat-avatar.svg" alt="">
+      <img src="images/testimonial-woman.png" alt="">
     </div>
     
     <div class="testimonials-container">
@@ -2749,6 +3281,9 @@
 
   <!-- Trust Bar Section -->
   <section class="trust-bar-section">
+    <!-- Gradient blob at top, mostly under testimonials -->
+    <div class="trust-bar-blob"></div>
+    
     <div class="trust-bar-container">
       <div class="trust-bar-stat">
         <span class="trust-bar-number" data-count-to="100" data-suffix="+">0</span>
@@ -2771,36 +3306,58 @@
 
   <!-- How It Works Section -->
   <section class="how-it-works-section">
+    <!-- Gradient blob -->
+    <div class="hiw-gradient-blob"></div>
+    
     <div class="how-it-works-container">
-      <h2 class="how-it-works-title">Smart questions. Smarter matches.</h2>
-      <p class="how-it-works-subtitle">Our AI learns what matters to you, then finds the policies that cover it. No jargon. No runaround. Just answers.</p>
+      <h2 class="how-it-works-title">Ridiculously Simple</h2>
       
       <div class="how-it-works-cards">
         <!-- Step 1 -->
         <div class="hiw-card">
           <div class="hiw-card-icon">
-            <img src="/images/chat-icon.png" alt="Chat icon">
+            <img src="images/chat-icon.png" alt="Chat icon">
           </div>
-          <h3 class="hiw-card-title">Answer a Few Questions</h3>
+          <h3 class="hiw-card-title">1. Answer a Few Questions</h3>
           <p class="hiw-card-desc">Just chat naturally about what you need. The AI asks smart follow-up questions to understand your situation.</p>
         </div>
         
         <!-- Step 2 -->
         <div class="hiw-card">
           <div class="hiw-card-icon compare">
-            <img src="/images/compare-icon.png" alt="Compare icon">
+            <img src="images/compare-icon.png" alt="Compare icon">
           </div>
-          <h3 class="hiw-card-title">Get Your Matches</h3>
+          <h3 class="hiw-card-title">2. Get Your Matches</h3>
           <p class="hiw-card-desc">AI instantly compares every plan in Australia and shows you the top 3 that fit your needs and budget.</p>
         </div>
         
         <!-- Step 3 -->
         <div class="hiw-card">
           <div class="hiw-card-icon award">
-            <img src="/images/award-icon.png" alt="Award icon">
+            <img src="images/award-icon.png" alt="Award icon">
           </div>
-          <h3 class="hiw-card-title">Choose &amp; Switch<br>(Or Save &amp; Come back!)</h3>
+          <h3 class="hiw-card-title">3. Choose &amp; Switch<br>(Or Save &amp; Come back!)</h3>
           <p class="hiw-card-desc">Review the details, ask any questions, and switch when you're ready. Or save it and come back later. Zero pressure.</p>
+        </div>
+      </div>
+      
+      <!-- Why/How/What Panel -->
+      <div class="philosophy-panel-wrapper">
+        <div class="philosophy-panel" id="philosophySection">
+          <div class="philosophy-panel-content">
+            <div class="philosophy-item" data-index="0">
+              <span class="philosophy-label">Why</span>
+              <p class="philosophy-text">You deserve control over decisions that affect your money and your life.</p>
+            </div>
+            <div class="philosophy-item" data-index="1">
+              <span class="philosophy-label">How</span>
+              <p class="philosophy-text">We let you explore freely, see every option, and get support only when you ask for it.</p>
+            </div>
+            <div class="philosophy-item" data-index="2">
+              <span class="philosophy-label">What</span>
+              <p class="philosophy-text">A comparison experience built around you, not sales targets.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2905,9 +3462,13 @@
             // Step 3: Show quick reply chips after typing finishes
             setTimeout(function() {
               quickReplies.style.display = 'flex';
+              // Small delay then expand
+              setTimeout(function() {
+                quickReplies.classList.add('expanded');
+              }, 50);
               const chips = quickReplies.querySelectorAll('.quick-reply-chip');
               chips.forEach(function(chip, idx) {
-                setTimeout(function() { chip.classList.add('visible'); }, idx * 120);
+                setTimeout(function() { chip.classList.add('visible'); }, idx * 120 + 200);
               });
               
               // Step 4: Start input glow + cycling placeholder
@@ -2987,26 +3548,6 @@
         }
       }
     });
-    
-    // Plan card scroll reveal
-    (function() {
-      const cards = document.querySelectorAll('.plan-card');
-      if (!cards.length) return;
-      
-      const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            const delay = parseInt(entry.target.getAttribute('data-reveal-delay') || '0');
-            setTimeout(function() {
-              entry.target.classList.add('revealed');
-            }, delay);
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-      
-      cards.forEach(function(card) { observer.observe(card); });
-    })();
     
     // Testimonials carousel
     (function() {
@@ -3108,6 +3649,260 @@
       
       var observer = new IntersectionObserver(onIntersect, { threshold: 0.3 });
       observer.observe(section);
+    })();
+    
+    // Magnetic cursor effect on gradient blob
+    (function() {
+      var hero = document.querySelector('.hero');
+      var blob = document.querySelector('.bg-gradient-center');
+      if (!hero || !blob) return;
+      
+      var baseX = 0, baseY = 0;
+      var currentX = 0, currentY = 0;
+      var ease = 0.1;
+      
+      hero.addEventListener('mousemove', function(e) {
+        var rect = hero.getBoundingClientRect();
+        var centerX = rect.width / 2;
+        var centerY = rect.height / 2;
+        var mouseX = e.clientX - rect.left;
+        var mouseY = e.clientY - rect.top;
+        
+        // More obvious magnetic pull - max 80px movement
+        baseX = (mouseX - centerX) * 0.1;
+        baseY = (mouseY - centerY) * 0.1;
+      });
+      
+      hero.addEventListener('mouseleave', function() {
+        baseX = 0;
+        baseY = 0;
+      });
+      
+      function animate() {
+        currentX += (baseX - currentX) * ease;
+        currentY += (baseY - currentY) * ease;
+        
+        blob.style.transform = 'translate(calc(-50% + ' + currentX + 'px), calc(-50% + ' + currentY + 'px))';
+        requestAnimationFrame(animate);
+      }
+      animate();
+    })();
+    
+    // Magnetic cursor effect for cards gradient blob
+    (function() {
+      var cardsContainer = document.getElementById('cardsContainer');
+      var cardsBlob = document.getElementById('cardsGradientBlob');
+      if (!cardsContainer || !cardsBlob) return;
+      
+      var targetX = 0, targetY = 0;
+      var currentX = 0, currentY = 0;
+      var ease = 0.08;
+      
+      cardsContainer.addEventListener('mousemove', function(e) {
+        var rect = cardsContainer.getBoundingClientRect();
+        var centerX = rect.left + rect.width / 2;
+        var centerY = rect.top + rect.height / 2;
+        
+        // More obvious magnetic pull - max 100px movement
+        targetX = (e.clientX - centerX) * 0.12;
+        targetY = (e.clientY - centerY) * 0.12;
+      });
+      
+      cardsContainer.addEventListener('mouseleave', function() {
+        targetX = 0;
+        targetY = 0;
+      });
+      
+      function animateCardsBlob() {
+        currentX += (targetX - currentX) * ease;
+        currentY += (targetY - currentY) * ease;
+        
+        cardsBlob.style.transform = 'translate(calc(-50% + ' + currentX + 'px), calc(-50% + ' + currentY + 'px))';
+        requestAnimationFrame(animateCardsBlob);
+      }
+      animateCardsBlob();
+    })();
+    
+    // Chatbox shrink + Cards grow + Demo title/subtitle on scroll effect
+    (function() {
+      var chatWrapper = document.querySelector('.chat-wrapper');
+      var cards = document.querySelectorAll('.plan-card');
+      var demoSection = document.querySelector('.demo-section');
+      var demoTitle = document.querySelector('.demo-title');
+      var demoSubtitle = document.querySelector('.demo-subtitle');
+      if (!chatWrapper || !cards.length || !demoSection) return;
+      
+      var titleAnimated = false;
+      
+      function updateScrollEffects() {
+        var scrollY = window.scrollY || window.pageYOffset;
+        var windowHeight = window.innerHeight;
+        var demoRect = demoSection.getBoundingClientRect();
+        
+        // Chatbox shrink: starts at 100px scroll, completes by 500px
+        var chatStart = 100;
+        var chatEnd = 500;
+        var chatProgress = 0;
+        
+        if (scrollY > chatStart) {
+          chatProgress = Math.min(1, (scrollY - chatStart) / (chatEnd - chatStart));
+        }
+        
+        var chatScale = 1 - (chatProgress * 0.08);
+        var chatOpacity = 1 - (chatProgress * 0.15);
+        chatWrapper.style.transform = 'scale(' + chatScale + ')';
+        chatWrapper.style.opacity = chatOpacity;
+        
+        // Demo title/subtitle: animate when demo section enters viewport
+        if (!titleAnimated && demoRect.top < windowHeight * 0.85) {
+          titleAnimated = true;
+          if (demoTitle) demoTitle.classList.add('visible');
+          if (demoSubtitle) demoSubtitle.classList.add('visible');
+        }
+        
+        // Cards grow: based on demo section position in viewport
+        // Start when demo section top is at 100% of viewport, complete at 10%
+        var cardsStartThreshold = windowHeight * 1.0;
+        var cardsEndThreshold = windowHeight * 0.1;
+        var cardsProgress = 0;
+        
+        if (demoRect.top < cardsStartThreshold) {
+          cardsProgress = Math.min(1, (cardsStartThreshold - demoRect.top) / (cardsStartThreshold - cardsEndThreshold));
+        }
+        
+        // Apply to each card with staggered offset
+        cards.forEach(function(card, index) {
+          var staggerOffset = index * 0.08; // 0, 0.08, 0.16 for cards
+          var cardProgress = Math.max(0, Math.min(1, (cardsProgress - staggerOffset) / (1 - staggerOffset * 2)));
+          
+          // Ease out cubic for smoother deceleration
+          var easedProgress = 1 - Math.pow(1 - cardProgress, 3);
+          
+          var cardScale = 0.7 + (easedProgress * 0.3); // 0.7 to 1
+          var cardY = 150 * (1 - easedProgress); // 150px to 0
+          var cardOpacity = easedProgress; // 0 to 1
+          
+          card.style.transform = 'translateY(' + cardY + 'px) scale(' + cardScale + ')';
+          card.style.opacity = cardOpacity;
+        });
+      }
+      
+      window.addEventListener('scroll', updateScrollEffects, { passive: true });
+      updateScrollEffects();
+    })();
+    
+    // Testimonials woman parallax effect
+    (function() {
+      var photo = document.querySelector('.testimonials-photo img');
+      var section = document.querySelector('.testimonials-section');
+      if (!photo || !section) return;
+      
+      function updateParallax() {
+        var rect = section.getBoundingClientRect();
+        var windowHeight = window.innerHeight;
+        
+        // Only apply when section is in view
+        if (rect.top < windowHeight && rect.bottom > 0) {
+          // Calculate progress through the section
+          var progress = (windowHeight - rect.top) / (windowHeight + rect.height);
+          // Subtle parallax: image moves slower than scroll (30px range)
+          var translateY = (progress - 0.5) * 60;
+          photo.style.transform = 'scaleX(-1) translateY(' + translateY + 'px)';
+        }
+      }
+      
+      window.addEventListener('scroll', updateParallax, { passive: true });
+      updateParallax();
+    })();
+    
+    // Philosophy panel scroll reveal
+    (function() {
+      var panel = document.getElementById('philosophySection');
+      if (!panel) return;
+      
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            panel.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.15 });
+      
+      observer.observe(panel);
+    })();
+    
+    // Feature pills scroll reveal animation
+    (function() {
+      var pills = document.querySelectorAll('.feature-pill');
+      if (!pills.length) return;
+      
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            // Trigger all pills with staggered CSS delays
+            pills.forEach(function(pill) {
+              pill.classList.add('visible');
+            });
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      
+      // Observe the first pill to trigger all
+      observer.observe(pills[0]);
+    })();
+    
+    // Dynamic price calculation based on sliders
+    (function() {
+      var sliders = document.querySelectorAll('.custom-slider[data-card]');
+      
+      // Store current slider values for each card
+      var cardValues = {
+        1: { excess: 250, extras: 250 },
+        2: { excess: 500, extras: 350 },
+        3: { excess: 750, extras: 150 }
+      };
+      
+      sliders.forEach(function(slider) {
+        slider.addEventListener('input', function() {
+          var cardId = this.getAttribute('data-card');
+          var type = this.getAttribute('data-type');
+          var value = parseInt(this.value);
+          
+          // Update stored value
+          cardValues[cardId][type] = value;
+          
+          // Get the price element for this card
+          var priceEl = document.querySelector('[data-card-price="' + cardId + '"]');
+          if (!priceEl) return;
+          
+          var basePrice = parseFloat(priceEl.getAttribute('data-base-price'));
+          
+          // Calculate price adjustment
+          // Lower excess = higher premium, higher extras = higher premium
+          var excessValue = cardValues[cardId].excess;
+          var extrasValue = cardValues[cardId].extras;
+          
+          // Excess: $250 adds $30, $500 adds $15, $750 adds $0
+          var excessAdjust = (750 - excessValue) * 0.06;
+          
+          // Extras: every $50 above $100 adds $8
+          var extrasAdjust = ((extrasValue - 100) / 50) * 8;
+          
+          var newPrice = basePrice + excessAdjust + extrasAdjust;
+          
+          // Animate the price change
+          priceEl.style.transition = 'transform 0.2s ease, color 0.2s ease';
+          priceEl.style.transform = 'scale(1.05)';
+          priceEl.style.color = '#5498F9';
+          
+          setTimeout(function() {
+            priceEl.textContent = '$' + newPrice.toFixed(2);
+            priceEl.style.transform = 'scale(1)';
+            priceEl.style.color = '';
+          }, 100);
+        });
+      });
     })();
   </script>
 </body>
