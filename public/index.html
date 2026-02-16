@@ -58,6 +58,7 @@
       background: linear-gradient(180deg, #FAFAFB 0%, #FFFFFF 100%);
       min-height: calc(100vh - 90px);
       padding-bottom: 0;
+      overflow: hidden;
     }
     
     .hero-container {
@@ -66,6 +67,40 @@
       max-width: 1136px;
       margin: 0 auto;
       padding: 40px 24px 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: calc(100vh - 90px);
+      justify-content: center;
+      /* 45:55 ratio - more space above (55%) pushes content lower */
+      padding-top: calc((100vh - 90px) * 0.10);
+      padding-bottom: calc((100vh - 90px) * 0.0);
+    }
+    
+    /* Hero top content wrapper */
+    .hero-top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: translateY(70px);
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .hero-top.shifted {
+      transform: translateY(-60px);
+    }
+    
+    /* Initial trustpilot (under buttons) */
+    .trustpilot-initial {
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .trustpilot-initial.hidden {
+      opacity: 0;
+      pointer-events: none;
+      height: 0;
+      overflow: hidden;
+      margin: 0;
     }
     
     /* AI-Powered Badge with animated gradient border */
@@ -192,14 +227,80 @@
       line-height: 33px;
     }
     
-    /* Chat Wrapper - Contains chat box AND the 3D icons */
+    /* Hero CTA Buttons */
+    .hero-cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 40px;
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .hero-cta-buttons.hidden {
+      opacity: 0;
+      pointer-events: none;
+      height: 0;
+      overflow: hidden;
+      margin: 0;
+    }
+    
+    .hero-btn-primary {
+      padding: 16px 32px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #5498F9 0%, #9B7BF6 50%, #ED2EF2 100%);
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: #FFFFFF;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .hero-btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(84, 152, 249, 0.35);
+    }
+    
+    .hero-btn-secondary {
+      padding: 16px 32px;
+      border-radius: 12px;
+      background: transparent;
+      border: 2px solid transparent;
+      background-image: linear-gradient(#FFFFFF, #FFFFFF), linear-gradient(135deg, #5498F9 0%, #9B7BF6 50%, #ED2EF2 100%);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
+      font-family: 'Inter', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: #0A0A0A;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    }
+    
+    .hero-btn-secondary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(155, 123, 246, 0.2);
+    }
+    
+    /* Chat Wrapper - Contains chat box AND the 3D icons AND trustpilot */
     .chat-wrapper {
       position: relative;
       width: 100%;
       max-width: 720px;
-      margin: 44px auto 0;
+      margin: 13px auto 0;
       transform-origin: center top;
-      will-change: transform, opacity;
+      opacity: 0;
+      transform: translateY(30px);
+      pointer-events: none;
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .chat-wrapper.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
     
     /* 3D Icons - Positioned relative to chat wrapper */
@@ -838,6 +939,19 @@
         padding: 0 20px;
       }
       
+      .hero-cta-buttons {
+        flex-direction: column;
+        padding: 0 20px;
+        gap: 12px;
+      }
+      
+      .hero-btn-primary,
+      .hero-btn-secondary {
+        width: 100%;
+        padding: 14px 24px;
+        font-size: 16px;
+      }
+      
       .chat-wrapper {
         margin: 40px 16px 0;
         max-width: calc(100% - 32px);
@@ -911,16 +1025,16 @@
     
     .logo-grid-section {
       position: relative;
-      background: #FFFFFF;
+      background: transparent;
       padding: 16px 40px 100px;
-      overflow: hidden;
+      overflow: visible;
     }
     
-    /* Gradient blob behind logos bleeding into testimonials */
+    /* Gradient blob behind logos - positioned under the card */
     .logos-gradient-blob {
       position: absolute;
       left: 50%;
-      bottom: -200px;
+      bottom: -100px;
       transform: translateX(-50%);
       width: 1000px;
       height: 600px;
@@ -999,12 +1113,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      opacity: 0.6;
-      transition: opacity 0.3s ease;
+      transition: transform 0.3s ease;
     }
     
     .logo-grid-item:hover {
-      opacity: 1;
+      transform: scale(1.05);
     }
     
     .logo-grid-item img {
@@ -1051,7 +1164,7 @@
     
     .demo-section {
       background: transparent;
-      padding: 56px 24px 120px;
+      padding: 56px 24px 60px;
       position: relative;
       overflow: visible;
     }
@@ -1097,15 +1210,6 @@
       line-height: 89.6px;
       letter-spacing: -1.5px;
       margin: 0 0 4px;
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
-                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    
-    .demo-title.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
     
     .demo-subtitle {
@@ -1114,16 +1218,6 @@
       font-weight: 400;
       color: #6E6E73;
       line-height: 32px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), 
-                  transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-      transition-delay: 0.1s;
-    }
-    
-    .demo-subtitle.visible {
-      opacity: 1;
-      transform: translateY(0);
     }
     
     .cards-container {
@@ -1236,11 +1330,11 @@
       border-color: #5498F9;
     }
     
-    /* Plan card scroll reveal */
+    /* Plan card styling */
     .plan-card {
-      opacity: 0;
-      transform: translateY(150px) scale(0.7);
-      transition: box-shadow 0.3s ease, border-color 0.3s ease;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
       will-change: transform, opacity;
     }
     
@@ -1661,41 +1755,17 @@
       background: #FFFFFF;
       border-radius: 60px;
       border-bottom: 1px solid #FDE7FA;
-      opacity: 0;
-      transform: translateY(30px) scale(0.85);
-      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                  box-shadow 0.3s ease;
-    }
-    
-    .feature-pill.visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
+      transition: box-shadow 0.3s ease;
     }
     
     .feature-pill:hover {
       box-shadow: 0 4px 16px rgba(84, 152, 249, 0.15);
     }
     
-    /* Staggered delays for pills */
-    .feature-pill:nth-child(1) { transition-delay: 0s; }
-    .feature-pill:nth-child(2) { transition-delay: 0.1s; }
-    .feature-pill:nth-child(3) { transition-delay: 0.2s; }
-    .feature-pill:nth-child(4) { transition-delay: 0.3s; }
-    
     .feature-pill-check {
       font-size: 18px;
       font-weight: 700;
       color: #10B981;
-      opacity: 0;
-      transform: scale(0) rotate(-180deg);
-      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    
-    .feature-pill.visible .feature-pill-check {
-      opacity: 1;
-      transform: scale(1) rotate(0deg);
-      transition-delay: 0.3s;
     }
     
     .feature-pill-text {
@@ -1755,7 +1825,7 @@
     /* ===== TESTIMONIALS SECTION ===== */
     .testimonials-section {
       position: relative;
-      background: linear-gradient(234deg, rgba(37, 142, 227, 0.14) 30%, rgba(37, 142, 227, 0.048) 62%), #FAFAFB;
+      background: transparent;
       padding: 100px 0 80px;
       overflow: hidden;
       min-height: 620px;
@@ -2178,7 +2248,7 @@
     .how-it-works-container {
       position: relative;
       z-index: 1;
-      max-width: 1200px;
+      max-width: 1320px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -2199,10 +2269,11 @@
       display: flex;
       gap: 30px;
       align-items: stretch;
+      width: 100%;
     }
     
     .hiw-card {
-      width: 420px;
+      flex: 1;
       background: #FFFFFF;
       border-radius: 20px;
       box-shadow: 0px 2px 4px rgba(0,0,0,0.04), 0px 1px 2px rgba(0,0,0,0.02);
@@ -2216,13 +2287,12 @@
     }
     
     .hiw-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0px 12px 24px rgba(84, 152, 249, 0.1), 0px 4px 8px rgba(0,0,0,0.06);
+      /* Hover handled in .hiw-card.visible:hover */
     }
     
     .hiw-card-icon {
-      width: 132px;
-      height: 132px;
+      width: 119px;
+      height: 119px;
       margin-bottom: 28px;
       display: flex;
       align-items: center;
@@ -2244,11 +2314,11 @@
     }
     
     .hiw-card-title {
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 600;
       color: #0A0A0A;
-      line-height: 33px;
-      height: 66px;
+      line-height: 30px;
+      height: 60px;
       display: flex;
       align-items: flex-end;
       justify-content: center;
@@ -2262,6 +2332,29 @@
       line-height: 27.2px;
       max-width: 345px;
     }
+    
+    /* HIW Card scroll reveal animation */
+    .hiw-card {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.3s ease;
+    }
+    
+    .hiw-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .hiw-card.visible:hover {
+      transform: translateY(-6px);
+      box-shadow: 0px 12px 24px rgba(84, 152, 249, 0.1), 0px 4px 8px rgba(0,0,0,0.06);
+    }
+    
+    .hiw-card[data-index="0"].visible { transition-delay: 0s; }
+    .hiw-card[data-index="1"].visible { transition-delay: 0.15s; }
+    .hiw-card[data-index="2"].visible { transition-delay: 0.3s; }
     
     @media (max-width: 1100px) {
       .how-it-works-cards {
@@ -2306,44 +2399,7 @@
       }
     }
     
-    /* ===== WHY/HOW/WHAT PANEL ===== */
-    .philosophy-panel-wrapper {
-      width: 100%;
-      max-width: 1320px;
-      margin: 30px auto 0;
-    }
-    
-    .philosophy-panel {
-      position: relative;
-      width: 100%;
-      padding: 45px 60px;
-      border-radius: 20px;
-      background: #FFFFFF;
-      box-shadow: 0px 2px 4px rgba(0,0,0,0.04), 0px 1px 2px rgba(0,0,0,0.02);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: default;
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    
-    .philosophy-panel:hover {
-      transform: translateY(-6px);
-      box-shadow: 0px 12px 24px rgba(84, 152, 249, 0.1), 0px 4px 8px rgba(0,0,0,0.06);
-    }
-    
-    .philosophy-panel.visible {
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-                  transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-                  box-shadow 0.3s ease;
-    }
-    
-    .philosophy-panel.visible:hover {
-      transform: translateY(-6px);
-    }
-    
-    /* Gradient blob behind philosophy panel */
+    /* Gradient blob behind How It Works section */
     .hiw-gradient-blob {
       position: absolute;
       left: 50%;
@@ -2388,93 +2444,304 @@
       }
     }
     
-    .philosophy-panel-content {
-      position: relative;
-      z-index: 1;
+    /* ===== WHY/HOW/WHAT CARDS ===== */
+    .philosophy-cards-wrapper {
+      margin-top: 30px;
+      width: 100%;
+    }
+    
+    .philosophy-cards {
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
+      gap: 30px;
+      align-items: stretch;
+      width: 100%;
     }
     
-    .philosophy-item {
+    .philosophy-card {
       flex: 1;
+      background: #FFFFFF;
+      border-radius: 20px;
+      box-shadow: 0px 2px 4px rgba(0,0,0,0.04), 0px 1px 2px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .philosophy-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0px 12px 24px rgba(84, 152, 249, 0.1), 0px 4px 8px rgba(0,0,0,0.06);
+    }
+    
+    .philosophy-card-animation {
+      height: 180px;
+      background: #FAFAFB;
+      border-bottom: 1px solid #E8E8EA;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      overflow: hidden;
+    }
+    
+    .philosophy-card-content {
+      padding: 45px 38px 49px;
       text-align: center;
-      padding: 0 40px;
-      opacity: 0;
-      transform: translateY(15px);
-      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                  transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-      position: relative;
     }
     
-    /* Subtle divider lines between items */
-    .philosophy-item:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 1px;
-      height: 60%;
-      background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.08) 50%, transparent 100%);
-    }
-    
-    .philosophy-panel.visible .philosophy-item {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    .philosophy-panel.visible .philosophy-item[data-index="0"] { transition-delay: 0.15s; }
-    .philosophy-panel.visible .philosophy-item[data-index="1"] { transition-delay: 0.25s; }
-    .philosophy-panel.visible .philosophy-item[data-index="2"] { transition-delay: 0.35s; }
-    
-    .philosophy-label {
-      display: block;
-      font-size: 28px;
+    .philosophy-card-label {
+      font-size: 24px;
       font-weight: 600;
       color: #0A0A0A;
-      line-height: 33px;
+      line-height: 30px;
       margin-bottom: 12px;
     }
     
-    .philosophy-text {
+    .philosophy-card-text {
       font-size: 17px;
       font-weight: 400;
       color: #6E6E73;
       line-height: 27.2px;
+      max-width: 345px;
+      margin: 0 auto;
     }
     
-    @media (max-width: 900px) {
-      .philosophy-panel-wrapper {
-        margin-top: 24px;
-        padding: 0 20px;
-      }
-      
-      .philosophy-panel {
-        padding: 32px 24px;
-      }
-      
-      .philosophy-panel-content {
+    /* === WHY Animation: Option Pills === */
+    .why-animation {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .why-chat-bubble {
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 14px 18px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      font-size: 13px;
+      color: #6E6E73;
+      max-width: 200px;
+      text-align: center;
+    }
+    
+    .why-options {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .why-option-pill {
+      padding: 10px 16px;
+      border-radius: 20px;
+      background: #FFFFFF;
+      border: 1.5px solid #E8E8EA;
+      font-size: 13px;
+      font-weight: 500;
+      color: #0A0A0A;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+    
+    .why-option-pill.selected {
+      background: linear-gradient(135deg, #5498F9 0%, #9B7BF6 100%);
+      border-color: transparent;
+      color: #FFFFFF;
+      transform: scale(1.05);
+    }
+    
+    .why-option-pill.faded {
+      opacity: 0.5;
+      transform: scale(0.95);
+    }
+    
+    /* === HOW Animation: Chat Bubbles === */
+    .how-animation {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      width: 100%;
+      max-width: 240px;
+    }
+    
+    .how-bubble {
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 12px;
+      line-height: 1.4;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    
+    .how-bubble.user {
+      background: linear-gradient(135deg, #5498F9 0%, #9B7BF6 100%);
+      color: #FFFFFF;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+      max-width: 85%;
+    }
+    
+    .how-bubble.ai {
+      background: #FFFFFF;
+      color: #0A0A0A;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      max-width: 85%;
+    }
+    
+    .how-bubble.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .how-typing {
+      display: flex;
+      gap: 4px;
+      padding: 12px 16px;
+      background: #FFFFFF;
+      border-radius: 16px;
+      border-bottom-left-radius: 4px;
+      align-self: flex-start;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      opacity: 0;
+    }
+    
+    .how-typing.visible {
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+    
+    .how-typing-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #9B7BF6;
+      animation: typingBounce 1.4s infinite ease-in-out;
+    }
+    
+    .how-typing-dot:nth-child(1) { animation-delay: 0s; }
+    .how-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+    .how-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+    
+    @keyframes typingBounce {
+      0%, 60%, 100% { transform: translateY(0); }
+      30% { transform: translateY(-4px); }
+    }
+    
+    /* === WHAT Animation: Comparison Cards === */
+    .what-animation {
+      display: flex;
+      gap: 12px;
+      align-items: flex-end;
+    }
+    
+    .what-mini-card {
+      width: 80px;
+      background: #FFFFFF;
+      border-radius: 12px;
+      border: 1.5px solid #E8E8EA;
+      padding: 12px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 7px;
+      opacity: 0;
+      transform: translateY(20px) scale(0.9);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .what-mini-card.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    
+    .what-mini-card.winner {
+      border-color: #5498F9;
+      box-shadow: 0 4px 16px rgba(84, 152, 249, 0.25);
+      transform: translateY(-8px) scale(1.05);
+    }
+    
+    .what-mini-card-logo {
+      width: 37px;
+      height: 18px;
+      background: linear-gradient(90deg, #E8E8EA 0%, #D1D1D6 100%);
+      border-radius: 3px;
+    }
+    
+    .what-mini-card.winner .what-mini-card-logo {
+      background: linear-gradient(135deg, #5498F9 0%, #9B7BF6 100%);
+    }
+    
+    .what-mini-card-price {
+      font-size: 13px;
+      font-weight: 700;
+      color: #0A0A0A;
+    }
+    
+    .what-mini-card-label {
+      font-size: 9px;
+      color: #6E6E73;
+    }
+    
+    .what-best-badge {
+      position: absolute;
+      top: -8px;
+      background: linear-gradient(135deg, #5498F9 0%, #9B7BF6 100%);
+      color: #FFFFFF;
+      font-size: 8px;
+      font-weight: 700;
+      padding: 3px 7px;
+      border-radius: 4px;
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .what-mini-card.winner .what-best-badge {
+      opacity: 1;
+      transform: scale(1);
+      transition-delay: 0.3s;
+    }
+    
+    .what-mini-card {
+      position: relative;
+    }
+    
+    @media (max-width: 1100px) {
+      .philosophy-cards {
         flex-direction: column;
         align-items: center;
-        gap: 32px;
+        gap: 24px;
       }
       
-      .philosophy-item {
-        max-width: 100%;
-        padding: 0;
+      .philosophy-card {
+        width: 100%;
+        max-width: 420px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .philosophy-cards-wrapper {
+        margin-top: 20px;
       }
       
-      .philosophy-item:not(:last-child)::after {
-        display: none;
+      .philosophy-card-animation {
+        height: 150px;
       }
       
-      .philosophy-label {
-        font-size: 22px;
-        line-height: 28px;
+      .philosophy-card-content {
+        padding: 20px 24px 24px;
       }
       
-      .philosophy-text {
+      .philosophy-card-label {
+        font-size: 12px;
+      }
+      
+      .philosophy-card-text {
         font-size: 15px;
         line-height: 24px;
       }
@@ -2739,27 +3006,65 @@
     <div class="bg-blob-mid-left"></div>
     
     <div class="hero-container">
-      <!-- AI-Powered Badge -->
-      <div class="badge-wrapper">
-        <div class="ai-badge">
-          <span>AI-Powered Chat</span>
+      <!-- Hero Top Content - badge, heading, subtitle -->
+      <div class="hero-top" id="heroTop">
+        <!-- AI-Powered Badge -->
+        <div class="badge-wrapper">
+          <div class="ai-badge">
+            <span>AI-Powered Chat</span>
+          </div>
+        </div>
+        
+        <!-- Main Heading -->
+        <div class="heading">
+          <h1>
+            Meet the AI that actually<br>
+            gets <span class="gradient-text">health insurance</span> right.
+          </h1>
+        </div>
+        
+        <!-- Subtitle -->
+        <p class="subtitle">
+          Every policy. Every fund. Matched to your life in minutes. Start comparing now.
+        </p>
+        
+        <!-- Hero CTA Buttons (Frame 1 - shown initially) -->
+        <div class="hero-cta-buttons" id="heroCTAButtons">
+          <button class="hero-btn-primary" id="btnFindPolicy">Find Your Perfect Policy</button>
+          <button class="hero-btn-secondary" id="btnNewToHealth">New to Health Insurance?</button>
+        </div>
+        
+        <!-- Trustpilot for buttons state (Frame 1) -->
+        <div class="trustpilot-rating trustpilot-initial" id="trustpilotInitial">
+          <div class="trustpilot-stars">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
+            </svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
+            </svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
+            </svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
+            </svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
+            </svg>
+          </div>
+          <span class="trustpilot-score">4.9</span>
+          <span class="trustpilot-text">out of 5 based on</span>
+          <span class="trustpilot-reviews">2,847 reviews</span>
+          <svg class="trustpilot-logo" width="80" height="20" viewBox="0 0 80 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.5 8.2H11.2L9.3 2.5L7.4 8.2H1L6.1 11.8L4.2 17.5L9.3 13.8L14.4 17.5L12.5 11.8L17.5 8.2Z" fill="#00B67A"/>
+            <path d="M12.8 13.2L12.5 11.8L9.3 13.8L12.8 13.2Z" fill="#005128"/>
+            <text x="22" y="14" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">Trustpilot</text>
+          </svg>
         </div>
       </div>
       
-      <!-- Main Heading -->
-      <div class="heading">
-        <h1>
-          Meet the AI that actually<br>
-          gets <span class="gradient-text">health insurance</span> right.
-        </h1>
-      </div>
-      
-      <!-- Subtitle -->
-      <p class="subtitle">
-        Every policy. Every fund. Matched to your life in minutes. Start comparing now.
-      </p>
-      
-      <!-- Chat Wrapper with 3D Icons -->
+      <!-- Chat Wrapper with 3D Icons (Frame 2 - hidden initially) -->
       <div class="chat-wrapper">
         <!-- 3D Icons positioned around the chat box -->
         <img 
@@ -2850,35 +3155,35 @@
             </div>
           </div>
         </div>
-      </div>
-      
-      <!-- Trustpilot Rating -->
-      <div class="trustpilot-rating">
-        <div class="trustpilot-stars">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
-          </svg>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
-          </svg>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
-          </svg>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
-          </svg>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
+        
+        <!-- Trustpilot Rating (appears with chatbox) -->
+        <div class="trustpilot-rating">
+          <div class="trustpilot-stars">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
+            </svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
+            </svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
+            </svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
+            </svg>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10 1L12.39 6.26L18 7.27L14 11.14L14.76 17L10 14.27L5.24 17L6 11.14L2 7.27L7.61 6.26L10 1Z" fill="#00B67A"/>
+            </svg>
+          </div>
+          <span class="trustpilot-score">4.9</span>
+          <span class="trustpilot-text">out of 5 based on</span>
+          <span class="trustpilot-reviews">2,847 reviews</span>
+          <svg class="trustpilot-logo" width="80" height="20" viewBox="0 0 80 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.5 8.2H11.2L9.3 2.5L7.4 8.2H1L6.1 11.8L4.2 17.5L9.3 13.8L14.4 17.5L12.5 11.8L17.5 8.2Z" fill="#00B67A"/>
+            <path d="M12.8 13.2L12.5 11.8L9.3 13.8L12.8 13.2Z" fill="#005128"/>
+            <text x="22" y="14" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">Trustpilot</text>
           </svg>
         </div>
-        <span class="trustpilot-score">4.9</span>
-        <span class="trustpilot-text">out of 5 based on</span>
-        <span class="trustpilot-reviews">2,847 reviews</span>
-        <svg class="trustpilot-logo" width="80" height="20" viewBox="0 0 80 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M17.5 8.2H11.2L9.3 2.5L7.4 8.2H1L6.1 11.8L4.2 17.5L9.3 13.8L14.4 17.5L12.5 11.8L17.5 8.2Z" fill="#00B67A"/>
-          <path d="M12.8 13.2L12.5 11.8L9.3 13.8L12.8 13.2Z" fill="#005128"/>
-          <text x="22" y="14" font-family="Inter, sans-serif" font-size="11" font-weight="700" fill="#0A0A0A">Trustpilot</text>
-        </svg>
       </div>
     </div>
   </section>
@@ -3172,26 +3477,26 @@
         <h2 class="logo-grid-title">We compare every major Australian health fund</h2>
         <div class="logo-grid">
           <!-- Row 1 -->
-          <div class="logo-grid-item"><img src="images/logo-aami.svg" alt="AAMI"></div>
-          <div class="logo-grid-item"><img src="images/logo-bupa.svg" alt="Bupa"></div>
-          <div class="logo-grid-item"><img src="images/logo-nib.svg" alt="NIB"></div>
-          <div class="logo-grid-item"><img src="images/logo-frank.svg" alt="Frank"></div>
-          <div class="logo-grid-item"><img src="images/logo-aia.svg" alt="AIA"></div>
-          <div class="logo-grid-item"><img src="images/logo-ing.svg" alt="ING"></div>
-          <!-- Row 2 (shifted order) -->
-          <div class="logo-grid-item"><img src="images/logo-nib.svg" alt="NIB"></div>
-          <div class="logo-grid-item"><img src="images/logo-ing.svg" alt="ING"></div>
-          <div class="logo-grid-item"><img src="images/logo-aami.svg" alt="AAMI"></div>
-          <div class="logo-grid-item"><img src="images/logo-aia.svg" alt="AIA"></div>
-          <div class="logo-grid-item"><img src="images/logo-bupa.svg" alt="Bupa"></div>
-          <div class="logo-grid-item"><img src="images/logo-frank.svg" alt="Frank"></div>
-          <!-- Row 3 (different shift) -->
-          <div class="logo-grid-item"><img src="images/logo-frank.svg" alt="Frank"></div>
-          <div class="logo-grid-item"><img src="images/logo-aia.svg" alt="AIA"></div>
-          <div class="logo-grid-item"><img src="images/logo-ing.svg" alt="ING"></div>
-          <div class="logo-grid-item"><img src="images/logo-bupa.svg" alt="Bupa"></div>
-          <div class="logo-grid-item"><img src="images/logo-nib.svg" alt="NIB"></div>
-          <div class="logo-grid-item"><img src="images/logo-aami.svg" alt="AAMI"></div>
+          <div class="logo-grid-item"><img src="images/logo-bupa-colour.svg" alt="Bupa"></div>
+          <div class="logo-grid-item"><img src="images/logo-nib-colour.svg" alt="NIB"></div>
+          <div class="logo-grid-item"><img src="images/logo-aami-colour.svg" alt="AAMI"></div>
+          <div class="logo-grid-item"><img src="images/logo-ing-colour.svg" alt="ING"></div>
+          <div class="logo-grid-item"><img src="images/logo-frank-colour.svg" alt="Frank"></div>
+          <div class="logo-grid-item"><img src="images/logo-aia-colour.svg" alt="AIA"></div>
+          <!-- Row 2 -->
+          <div class="logo-grid-item"><img src="images/logo-aia-colour.svg" alt="AIA"></div>
+          <div class="logo-grid-item"><img src="images/logo-frank-colour.svg" alt="Frank"></div>
+          <div class="logo-grid-item"><img src="images/logo-bupa-colour.svg" alt="Bupa"></div>
+          <div class="logo-grid-item"><img src="images/logo-nib-colour.svg" alt="NIB"></div>
+          <div class="logo-grid-item"><img src="images/logo-aami-colour.svg" alt="AAMI"></div>
+          <div class="logo-grid-item"><img src="images/logo-ing-colour.svg" alt="ING"></div>
+          <!-- Row 3 -->
+          <div class="logo-grid-item"><img src="images/logo-ing-colour.svg" alt="ING"></div>
+          <div class="logo-grid-item"><img src="images/logo-aami-colour.svg" alt="AAMI"></div>
+          <div class="logo-grid-item"><img src="images/logo-aia-colour.svg" alt="AIA"></div>
+          <div class="logo-grid-item"><img src="images/logo-frank-colour.svg" alt="Frank"></div>
+          <div class="logo-grid-item"><img src="images/logo-bupa-colour.svg" alt="Bupa"></div>
+          <div class="logo-grid-item"><img src="images/logo-nib-colour.svg" alt="NIB"></div>
         </div>
       </div>
     </div>
@@ -3314,7 +3619,7 @@
       
       <div class="how-it-works-cards">
         <!-- Step 1 -->
-        <div class="hiw-card">
+        <div class="hiw-card" data-index="0">
           <div class="hiw-card-icon">
             <img src="images/chat-icon.png" alt="Chat icon">
           </div>
@@ -3323,7 +3628,7 @@
         </div>
         
         <!-- Step 2 -->
-        <div class="hiw-card">
+        <div class="hiw-card" data-index="1">
           <div class="hiw-card-icon compare">
             <img src="images/compare-icon.png" alt="Compare icon">
           </div>
@@ -3332,7 +3637,7 @@
         </div>
         
         <!-- Step 3 -->
-        <div class="hiw-card">
+        <div class="hiw-card" data-index="2">
           <div class="hiw-card-icon award">
             <img src="images/award-icon.png" alt="Award icon">
           </div>
@@ -3341,23 +3646,75 @@
         </div>
       </div>
       
-      <!-- Why/How/What Panel -->
-      <div class="philosophy-panel-wrapper">
-        <div class="philosophy-panel" id="philosophySection">
-          <div class="philosophy-panel-content">
-            <div class="philosophy-item" data-index="0">
-              <span class="philosophy-label">Why</span>
-              <p class="philosophy-text">You deserve control over decisions that affect your money and your life.</p>
+      <!-- Why/How/What Cards -->
+      <div class="philosophy-cards-wrapper">
+        <div class="philosophy-cards">
+          
+          <!-- WHY Card -->
+          <div class="philosophy-card" id="whyCard">
+            <div class="philosophy-card-animation">
+              <div class="why-animation">
+                <div class="why-chat-bubble">Who's this cover for?</div>
+                <div class="why-options">
+                  <span class="why-option-pill" data-option="1">🙋 Just me</span>
+                  <span class="why-option-pill" data-option="2">👫 Me + partner</span>
+                  <span class="why-option-pill" data-option="3">👨‍👩‍👧 Family</span>
+                </div>
+              </div>
             </div>
-            <div class="philosophy-item" data-index="1">
-              <span class="philosophy-label">How</span>
-              <p class="philosophy-text">We let you explore freely, see every option, and get support only when you ask for it.</p>
-            </div>
-            <div class="philosophy-item" data-index="2">
-              <span class="philosophy-label">What</span>
-              <p class="philosophy-text">A comparison experience built around you, not sales targets.</p>
+            <div class="philosophy-card-content">
+              <span class="philosophy-card-label">Why</span>
+              <p class="philosophy-card-text">You deserve control over decisions that affect your money and your life.</p>
             </div>
           </div>
+          
+          <!-- HOW Card -->
+          <div class="philosophy-card" id="howCard">
+            <div class="philosophy-card-animation">
+              <div class="how-animation">
+                <div class="how-bubble user">I need cover for my family of 4</div>
+                <div class="how-typing">
+                  <span class="how-typing-dot"></span>
+                  <span class="how-typing-dot"></span>
+                  <span class="how-typing-dot"></span>
+                </div>
+                <div class="how-bubble ai">Got it! Any pre-existing conditions I should know about?</div>
+              </div>
+            </div>
+            <div class="philosophy-card-content">
+              <span class="philosophy-card-label">How</span>
+              <p class="philosophy-card-text">No forms. No phone queues. Just a conversation that actually understands what you need.</p>
+            </div>
+          </div>
+          
+          <!-- WHAT Card -->
+          <div class="philosophy-card" id="whatCard">
+            <div class="philosophy-card-animation">
+              <div class="what-animation">
+                <div class="what-mini-card" data-card="1">
+                  <div class="what-mini-card-logo"></div>
+                  <span class="what-mini-card-price">$142/mo</span>
+                  <span class="what-mini-card-label">Good</span>
+                </div>
+                <div class="what-mini-card" data-card="2">
+                  <div class="what-best-badge">Best Match</div>
+                  <div class="what-mini-card-logo"></div>
+                  <span class="what-mini-card-price">$128/mo</span>
+                  <span class="what-mini-card-label">Best Value</span>
+                </div>
+                <div class="what-mini-card" data-card="3">
+                  <div class="what-mini-card-logo"></div>
+                  <span class="what-mini-card-price">$156/mo</span>
+                  <span class="what-mini-card-label">Premium</span>
+                </div>
+              </div>
+            </div>
+            <div class="philosophy-card-content">
+              <span class="philosophy-card-label">What</span>
+              <p class="philosophy-card-text">A smarter way to compare health insurance — powered by AI, built for humans.</p>
+            </div>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -3399,6 +3756,36 @@
   </footer>
 
   <script>
+    // Hero CTA buttons - reveal chatbox on click
+    document.addEventListener('DOMContentLoaded', function() {
+      var btnFindPolicy = document.getElementById('btnFindPolicy');
+      var btnNewToHealth = document.getElementById('btnNewToHealth');
+      var heroCTAButtons = document.getElementById('heroCTAButtons');
+      var trustpilotInitial = document.getElementById('trustpilotInitial');
+      var heroTop = document.getElementById('heroTop');
+      var chatWrapper = document.querySelector('.chat-wrapper');
+      
+      function revealChatbox() {
+        // All transitions happen together
+        heroCTAButtons.classList.add('hidden');
+        trustpilotInitial.classList.add('hidden');
+        heroTop.classList.add('shifted');
+        chatWrapper.classList.add('visible');
+        
+        // Trigger the chat animation sequence after slide-up completes
+        setTimeout(function() {
+          triggerChatAnimation();
+        }, 400);
+      }
+      
+      if (btnFindPolicy) {
+        btnFindPolicy.addEventListener('click', revealChatbox);
+      }
+      if (btnNewToHealth) {
+        btnNewToHealth.addEventListener('click', revealChatbox);
+      }
+    });
+    
     // 3D icon parallax on mouse move
     (function() {
       var hero = document.querySelector('.hero');
@@ -3421,7 +3808,12 @@
     })();
     
     // Bot typing animation + quick reply chips + input micro-interaction
-    document.addEventListener('DOMContentLoaded', function() {
+    var chatAnimationTriggered = false;
+    
+    function triggerChatAnimation() {
+      if (chatAnimationTriggered) return;
+      chatAnimationTriggered = true;
+      
       const messageRow = document.getElementById('botMessageRow');
       const typingIndicator = document.getElementById('typingIndicator');
       const messageText = document.getElementById('botMessageText');
@@ -3430,10 +3822,10 @@
       const inputWrapper = document.querySelector('.input-wrapper');
       const fullMessage = "Hi! I'm here to help you find the perfect health insurance. Let's start simple — are you looking for cover just for yourself, or for your family too?";
       
-      // Step 1: Slide in the message row with typing dots (after 800ms)
+      // Step 1: Slide in the message row with typing dots (after 500ms)
       setTimeout(function() {
         messageRow.classList.add('message-row-enter');
-      }, 800);
+      }, 500);
       
       // Step 2: After dots show for a bit, swap to typewriter text
       setTimeout(function() {
@@ -3473,7 +3865,7 @@
               
               // Step 4: Start input glow + cycling placeholder
               setTimeout(function() {
-                inputWrapper.classList.add('glow-active');
+                if (inputWrapper) inputWrapper.classList.add('glow-active');
                 startCyclingPlaceholder();
               }, 400);
             }, 800);
@@ -3481,10 +3873,13 @@
         }
         
         typeChar();
-      }, 2000);
+      }, 1700);
       
       // Cycling placeholder
       function startCyclingPlaceholder() {
+        const textInputField = document.querySelector('.text-input');
+        if (!textInputField) return;
+        
         const placeholders = [
           "Try: I need cover for my family...",
           "Try: What's the cheapest hospital plan?",
@@ -3493,18 +3888,18 @@
           "Type your answer here..."
         ];
         let pIdx = 0;
-        textInput.classList.add('cycling');
+        textInputField.classList.add('cycling');
         
         setInterval(function() {
-          textInput.classList.add('fading');
+          textInputField.classList.add('fading');
           setTimeout(function() {
             pIdx = (pIdx + 1) % placeholders.length;
-            textInput.placeholder = placeholders[pIdx];
-            textInput.classList.remove('fading');
+            textInputField.placeholder = placeholders[pIdx];
+            textInputField.classList.remove('fading');
           }, 300);
         }, 3000);
       }
-    });
+    }
 
     // Initialize all sliders
     document.addEventListener('DOMContentLoaded', function() {
@@ -3723,41 +4118,32 @@
       animateCardsBlob();
     })();
     
-    // Chatbox shrink + Cards grow + Demo title/subtitle on scroll effect
+    // Chatbox shrink + Cards grow on scroll effect
     (function() {
       var chatWrapper = document.querySelector('.chat-wrapper');
       var cards = document.querySelectorAll('.plan-card');
       var demoSection = document.querySelector('.demo-section');
-      var demoTitle = document.querySelector('.demo-title');
-      var demoSubtitle = document.querySelector('.demo-subtitle');
-      if (!chatWrapper || !cards.length || !demoSection) return;
-      
-      var titleAnimated = false;
+      if (!cards.length || !demoSection) return;
       
       function updateScrollEffects() {
         var scrollY = window.scrollY || window.pageYOffset;
         var windowHeight = window.innerHeight;
         var demoRect = demoSection.getBoundingClientRect();
         
-        // Chatbox shrink: starts at 100px scroll, completes by 500px
-        var chatStart = 100;
-        var chatEnd = 500;
-        var chatProgress = 0;
-        
-        if (scrollY > chatStart) {
-          chatProgress = Math.min(1, (scrollY - chatStart) / (chatEnd - chatStart));
-        }
-        
-        var chatScale = 1 - (chatProgress * 0.08);
-        var chatOpacity = 1 - (chatProgress * 0.15);
-        chatWrapper.style.transform = 'scale(' + chatScale + ')';
-        chatWrapper.style.opacity = chatOpacity;
-        
-        // Demo title/subtitle: animate when demo section enters viewport
-        if (!titleAnimated && demoRect.top < windowHeight * 0.85) {
-          titleAnimated = true;
-          if (demoTitle) demoTitle.classList.add('visible');
-          if (demoSubtitle) demoSubtitle.classList.add('visible');
+        // Chatbox shrink: only if visible, starts at 100px scroll, completes by 500px
+        if (chatWrapper && chatWrapper.classList.contains('visible')) {
+          var chatStart = 100;
+          var chatEnd = 500;
+          var chatProgress = 0;
+          
+          if (scrollY > chatStart) {
+            chatProgress = Math.min(1, (scrollY - chatStart) / (chatEnd - chatStart));
+          }
+          
+          var chatScale = 1 - (chatProgress * 0.08);
+          var chatOpacity = 1 - (chatProgress * 0.15);
+          chatWrapper.style.transform = 'scale(' + chatScale + ')';
+          chatWrapper.style.opacity = chatOpacity;
         }
         
         // Cards grow: based on demo section position in viewport
@@ -3813,22 +4199,6 @@
       
       window.addEventListener('scroll', updateParallax, { passive: true });
       updateParallax();
-    })();
-    
-    // Philosophy panel scroll reveal
-    (function() {
-      var panel = document.getElementById('philosophySection');
-      if (!panel) return;
-      
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            panel.classList.add('visible');
-          }
-        });
-      }, { threshold: 0.15 });
-      
-      observer.observe(panel);
     })();
     
     // Feature pills scroll reveal animation
@@ -3902,6 +4272,149 @@
             priceEl.style.color = '';
           }, 100);
         });
+      });
+    })();
+    
+    // Philosophy Cards Micro-Animations
+    (function() {
+      // WHY Card Animation - Option selection
+      function animateWhyCard() {
+        var pills = document.querySelectorAll('.why-option-pill');
+        var currentSelected = 0;
+        
+        function selectOption() {
+          pills.forEach(function(pill, index) {
+            pill.classList.remove('selected', 'faded');
+            if (index === currentSelected) {
+              pill.classList.add('selected');
+            } else {
+              pill.classList.add('faded');
+            }
+          });
+          
+          currentSelected = (currentSelected + 1) % pills.length;
+        }
+        
+        // Initial state - all normal
+        setTimeout(function() {
+          selectOption();
+        }, 1000);
+        
+        // Loop the selection
+        setInterval(function() {
+          // Reset all
+          pills.forEach(function(pill) {
+            pill.classList.remove('selected', 'faded');
+          });
+          
+          setTimeout(function() {
+            selectOption();
+          }, 800);
+        }, 3000);
+      }
+      
+      // HOW Card Animation - Chat conversation
+      function animateHowCard() {
+        var userBubble = document.querySelector('.how-bubble.user');
+        var typing = document.querySelector('.how-typing');
+        var aiBubble = document.querySelector('.how-bubble.ai');
+        
+        function runChatSequence() {
+          // Reset
+          userBubble.classList.remove('visible');
+          typing.classList.remove('visible');
+          typing.style.display = 'flex';
+          aiBubble.classList.remove('visible');
+          aiBubble.style.display = 'none';
+          
+          // User message appears
+          setTimeout(function() {
+            userBubble.classList.add('visible');
+          }, 500);
+          
+          // Typing indicator
+          setTimeout(function() {
+            typing.classList.add('visible');
+          }, 1200);
+          
+          // AI response replaces typing
+          setTimeout(function() {
+            typing.style.display = 'none';
+            aiBubble.style.display = 'block';
+            aiBubble.classList.add('visible');
+          }, 2400);
+        }
+        
+        // Initial run
+        runChatSequence();
+        
+        // Loop
+        setInterval(runChatSequence, 5000);
+      }
+      
+      // WHAT Card Animation - Comparison cards
+      function animateWhatCard() {
+        var cards = document.querySelectorAll('.what-mini-card');
+        
+        function runCompareSequence() {
+          // Reset all cards
+          cards.forEach(function(card) {
+            card.classList.remove('visible', 'winner');
+          });
+          
+          // Cards slide in one by one
+          cards.forEach(function(card, index) {
+            setTimeout(function() {
+              card.classList.add('visible');
+            }, 300 + (index * 200));
+          });
+          
+          // Middle card becomes winner
+          setTimeout(function() {
+            cards[1].classList.add('winner');
+          }, 1400);
+        }
+        
+        // Initial run
+        runCompareSequence();
+        
+        // Loop
+        setInterval(runCompareSequence, 4500);
+      }
+      
+      // Start animations when cards are in view
+      var philosophyCards = document.querySelector('.philosophy-cards-wrapper');
+      if (philosophyCards) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              animateWhyCard();
+              animateHowCard();
+              animateWhatCard();
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.3 });
+        
+        observer.observe(philosophyCards);
+      }
+    })();
+    
+    // HIW Cards scroll reveal animation
+    (function() {
+      var hiwCards = document.querySelectorAll('.hiw-card');
+      if (!hiwCards.length) return;
+      
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.2 });
+      
+      hiwCards.forEach(function(card) {
+        observer.observe(card);
       });
     })();
   </script>
